@@ -1,13 +1,20 @@
 {
+    "name": "portfolio",
+    "version": "0.0.1",
+    "description": "Portfolio",
     "private": true,
-    "type": "module",
     "scripts": {
         "build": "vite build",
         "build:ssr": "vite build && vite build --ssr",
         "dev": "vite",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
-        "lint": "eslint . --fix"
+        "lint:ts": "vue-tsc --noEmit",
+        "lint:eslint": "eslint --cache --max-warnings 0  \"resources/**/*.{vue,ts,tsx}\"",
+        "lint:prettier": "prettier --write  \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",
+        "lint": "yarn lint:eslint && yarn lint:prettier && yarn lint:ts",
+        "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
+        "preview": "vite preview --port 8088"
     },
     "devDependencies": {
         "@eslint/js": "^9.19.0",
@@ -20,7 +27,10 @@
         "prettier-plugin-organize-imports": "^4.1.0",
         "prettier-plugin-tailwindcss": "^0.6.9",
         "typescript-eslint": "^8.23.0",
-        "vue-tsc": "^2.2.4"
+        "vue-tsc": "^2.2.4",
+        "eslint-define-config": "^1.20.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-prettier": "^4.2.1"
     },
     "dependencies": {
         "@headlessui/vue": "^1.7.23",

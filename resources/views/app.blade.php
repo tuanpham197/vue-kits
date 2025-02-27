@@ -12,6 +12,22 @@
         @routes
         @vite(['resources/js/app.ts'])
         @inertiaHead
+
+        <script>
+        if (
+            localStorage.getItem("dark-mode") === "false" ||
+            !("dark-mode" in localStorage)
+        ) {
+            document.querySelector("html").classList.remove("dark");
+        } else {
+            document.querySelector("html").classList.add("dark");
+        }
+        </script>
+        <script
+        defer
+        data-domain="preview.cruip.com,rollup.cruip.com"
+        src="https://plausible.cruip.com/js/script.js"
+        ></script>
     </head>
     <body class="font-sans antialiased">
         @inertia

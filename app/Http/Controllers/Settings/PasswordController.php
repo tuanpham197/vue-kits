@@ -37,6 +37,7 @@ class PasswordController extends Controller
         $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);
+        to_route("home");
 
         return back();
     }
