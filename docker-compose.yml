@@ -5,7 +5,7 @@ services:
       dockerfile: infrastructure/web/Dockerfile
     entrypoint: php artisan octane:frankenphp --max-requests=1
     ports:
-      - "80:8000"
+      - "8089:8000"
     volumes:
       - .:/app
   dozzle:
@@ -14,4 +14,4 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - 8080:8080
+      - 8088:8080

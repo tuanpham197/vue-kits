@@ -2,7 +2,15 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Link } from '@inertiajs/vue3';
 import RightSideBar from './RightSideBar.vue';
+import { reactive, ref } from 'vue';
 defineOptions({ layout: AppLayout });
+
+type Tab = 'coding' | 'startups' | 'tutorials' | 'indieHacking';
+const activeTab = ref<Tab>('coding');
+const show = ref<Boolean>(false);
+
+
+
 </script>
 <template>
   <div class="w-full">
@@ -44,422 +52,335 @@ defineOptions({ layout: AppLayout });
 
               <!-- Filters -->
               <ul class="cg3vi crdpf cnxqt c8z7y cme8e cfwvb">
-                <li class="cz4pw c59mu">
-                  <a class="cxmc9 cgygf cg0ht cnp10 ch63g chipd cen0e" href="#0">Coding</a>
+                <li class="cz4pw c59mu" @click="activeTab = 'coding'">
+                  <a class="cg0ht cnp10 cxslc chipd cen0e" href="#0" :class="{'ch63g cgygf cxmc9': activeTab === 'coding'}">Coding</a>
                 </li>
-                <li class="cz4pw c59mu">
-                  <a class="cts6h cb9ru cxslc c2bb0 chipd cen0e" href="#0">Startups</a>
+                <li class="cz4pw c59mu" @click="activeTab = 'startups'">
+                  <a class="cg0ht cts6h cb9ru cxslc c2bb0 chipd cen0e" href="#0" :class="{'ch63g cgygf cxmc9': activeTab === 'startups'}">Startups</a>
                 </li>
-                <li class="cz4pw c59mu">
-                  <a class="cts6h cb9ru cxslc c2bb0 chipd cen0e" href="#0">Tutorials</a>
+                <li class="cz4pw c59mu" @click="activeTab = 'tutorials'">
+                  <a class="cg0ht cts6h cb9ru cxslc c2bb0 chipd cen0e" href="#0" :class="{'ch63g cgygf': activeTab === 'tutorials'}">Tutorials</a>
                 </li>
-                <li class="cz4pw c59mu">
-                  <a class="cts6h cb9ru cxslc c2bb0 chipd cen0e" href="#0">Indie Hacking</a>
+                <li class="cz4pw c59mu" @click="activeTab = 'indieHacking'">
+                  <a class="cg0ht cts6h cb9ru cxslc c2bb0 chipd cen0e" href="#0" :class="{'ch63g cgygf': activeTab === 'indieHacking'}">Indie Hacking</a>
                 </li>
               </ul>
 
-              <!-- Articles list -->
-              <div>
-                <Link :href="route('posts.detail')">
-                  <article class="cg3vi crdpf c8z7y c3bdg">
-                    <div class="c9noy cfwvb">
-                      <img
-                        class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
-                        src="https://preview.cruip.com/devspace/images/post-thumb-02.jpg"
-                        width="88"
-                        height="88"
-                        alt="Post 01"
-                      />
-                      <div>
-                        <div class="c2bb0 cd99g ck5r6 c0kco">
-                          <span class="chugl">—</span>
-                          Dec 24, 2023
-                        </div>
-                        <h3 class="cpynq c670g c5rvt c0kco">
-                          <a
-                            class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
-                            href="#"
-                          >
-                            An Interactive Guide to Flexbox
-                          </a>
-                        </h3>
-                        <div class="cfwvb">
-                          <div class="cxslc c2bb0 cme8e c4a0m">
-                            Flexbox is a remarkably flexible layout mode. When we understand how it
-                            works, we can build responsive designs that rearrange themselves as
-                            needed.
+              <div class="relative">
+                <transition>
+                  <div :key="activeTab" class="tab-content">
+                    <div v-if="activeTab === 'coding'">
+                      <!-- Coding content here -->
+                      <Link :href="route('posts.detail')">
+                        <article class="cg3vi crdpf c8z7y c3bdg">
+                          <div class="c9noy cfwvb">
+                            <img
+                              class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
+                              src="https://preview.cruip.com/devspace/images/post-thumb-02.jpg"
+                              width="88"
+                              height="88"
+                              alt="Post 01"
+                            />
+                            <div>
+                              <div class="c2bb0 cd99g ck5r6 c0kco">
+                                <span class="chugl">—</span>
+                                Dec 24, 2023
+                              </div>
+                              <h3 class="cpynq c670g c5rvt c0kco">
+                                <a
+                                  class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
+                                  href="#"
+                                >
+                                  An Interactive Guide to Flexbox
+                                </a>
+                              </h3>
+                              <div class="cfwvb">
+                                <div class="cxslc c2bb0 cme8e c4a0m">
+                                  Flexbox is a remarkably flexible layout mode. When we understand
+                                  how it works, we can build responsive designs that rearrange
+                                  themselves as needed.
+                                </div>
+                                <a
+                                  class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
+                                  href="#"
+                                  tabindex="-1"
+                                >
+                                  <svg
+                                    class="cqlhq cjnrq cofma chtu4"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="12"
+                                  >
+                                    <path
+                                      d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
+                                    ></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
                           </div>
-                          <a
-                            class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
-                            href="#"
-                            tabindex="-1"
-                          >
-                            <svg
-                              class="cqlhq cjnrq cofma chtu4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="14"
-                              height="12"
-                            >
-                              <path
-                                d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
-                              ></path>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </Link>
-                <Link :href="route('posts.detail')">
-                  <article class="cg3vi crdpf c8z7y c3bdg">
-                    <div class="c9noy cfwvb">
-                      <img
-                        class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
-                        src="https://preview.cruip.com/devspace/images/post-thumb-03.jpg"
-                        width="88"
-                        height="88"
-                        alt="Post 02"
-                      />
-                      <div>
-                        <div class="c2bb0 cd99g ck5r6 c0kco">
-                          <span class="chugl">—</span>
-                          Dec 24, 2023
-                        </div>
-                        <h3 class="cpynq c670g c5rvt c0kco">
-                          <a
-                            class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
-                            href="#"
-                          >
-                            Fuzzy Logic in a Hurry
-                          </a>
-                        </h3>
-                        <div class="cfwvb">
-                          <div class="cxslc c2bb0 cme8e c4a0m">
-                            Flexbox is a remarkably flexible layout mode. When we understand how it
-                            works, we can build responsive designs that rearrange themselves as
-                            needed.
+                        </article>
+                      </Link>
+                      <Link :href="route('posts.detail')">
+                        <article class="cg3vi crdpf c8z7y c3bdg">
+                          <div class="c9noy cfwvb">
+                            <img
+                              class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
+                              src="https://preview.cruip.com/devspace/images/post-thumb-03.jpg"
+                              width="88"
+                              height="88"
+                              alt="Post 02"
+                            />
+                            <div>
+                              <div class="c2bb0 cd99g ck5r6 c0kco">
+                                <span class="chugl">—</span>
+                                Dec 24, 2023
+                              </div>
+                              <h3 class="cpynq c670g c5rvt c0kco">
+                                <a
+                                  class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
+                                  href="#"
+                                >
+                                  Fuzzy Logic in a Hurry
+                                </a>
+                              </h3>
+                              <div class="cfwvb">
+                                <div class="cxslc c2bb0 cme8e c4a0m">
+                                  Flexbox is a remarkably flexible layout mode. When we understand
+                                  how it works, we can build responsive designs that rearrange
+                                  themselves as needed.
+                                </div>
+                                <a
+                                  class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
+                                  href="#"
+                                  tabindex="-1"
+                                >
+                                  <svg
+                                    class="cqlhq cjnrq cofma chtu4"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="12"
+                                  >
+                                    <path
+                                      d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
+                                    ></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
                           </div>
-                          <a
-                            class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
-                            href="#"
-                            tabindex="-1"
-                          >
-                            <svg
-                              class="cqlhq cjnrq cofma chtu4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="14"
-                              height="12"
-                            >
-                              <path
-                                d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
-                              ></path>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
+                        </article>
+                      </Link>
                     </div>
-                  </article>
-                </Link>
-                <Link :href="route('posts.detail')">
-                  <article class="cg3vi crdpf c8z7y c3bdg">
-                    <div class="c9noy cfwvb">
-                      <img
-                        class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
-                        src="https://preview.cruip.com/devspace/images/post-thumb-04.jpg"
-                        width="88"
-                        height="88"
-                        alt="Post 03"
-                      />
-                      <div>
-                        <div class="c2bb0 cd99g ck5r6 c0kco">
-                          <span class="chugl">—</span>
-                          Dec 24, 2023
-                        </div>
-                        <h3 class="cpynq c670g c5rvt c0kco">
-                          <a
-                            class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
-                            href="#"
-                          >
-                            Machine Learning for Humans
-                          </a>
-                        </h3>
-                        <div class="cfwvb">
-                          <div class="cxslc c2bb0 cme8e c4a0m">
-                            Flexbox is a remarkably flexible layout mode. When we understand how it
-                            works, we can build responsive designs that rearrange themselves as
-                            needed.
+                    <div v-if="activeTab === 'startups'">
+                      <!-- Startups content here -->
+                      <Link :href="route('posts.detail')">
+                        <article class="cg3vi crdpf c8z7y c3bdg">
+                          <div class="c9noy cfwvb">
+                            <img
+                              class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
+                              src="https://preview.cruip.com/devspace/images/post-thumb-04.jpg"
+                              width="88"
+                              height="88"
+                              alt="Post 03"
+                            />
+                            <div>
+                              <div class="c2bb0 cd99g ck5r6 c0kco">
+                                <span class="chugl">—</span>
+                                Dec 24, 2023
+                              </div>
+                              <h3 class="cpynq c670g c5rvt c0kco">
+                                <a
+                                  class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
+                                  href="#"
+                                >
+                                  Machine Learning for Humans
+                                </a>
+                              </h3>
+                              <div class="cfwvb">
+                                <div class="cxslc c2bb0 cme8e c4a0m">
+                                  Flexbox is a remarkably flexible layout mode. When we understand
+                                  how it works, we can build responsive designs that rearrange
+                                  themselves as needed.
+                                </div>
+                                <a
+                                  class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
+                                  href="#"
+                                  tabindex="-1"
+                                >
+                                  <svg
+                                    class="cqlhq cjnrq cofma chtu4"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="12"
+                                  >
+                                    <path
+                                      d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
+                                    ></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
                           </div>
-                          <a
-                            class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
-                            href="#"
-                            tabindex="-1"
-                          >
-                            <svg
-                              class="cqlhq cjnrq cofma chtu4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="14"
-                              height="12"
-                            >
-                              <path
-                                d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
-                              ></path>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </Link>
-                <Link :href="route('posts.detail')">
-                  <article class="cg3vi crdpf c8z7y c3bdg">
-                    <div class="c9noy cfwvb">
-                      <img
-                        class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
-                        src="https://preview.cruip.com/devspace/images/post-thumb-05.jpg"
-                        width="88"
-                        height="88"
-                        alt="Post 04"
-                      />
-                      <div>
-                        <div class="c2bb0 cd99g ck5r6 c0kco">
-                          <span class="chugl">—</span>
-                          Dec 24, 2023
-                        </div>
-                        <h3 class="cpynq c670g c5rvt c0kco">
-                          <a
-                            class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
-                            href="#"
-                          >
-                            Writing My First Security Blogpost
-                          </a>
-                        </h3>
-                        <div class="cfwvb">
-                          <div class="cxslc c2bb0 cme8e c4a0m">
-                            Flexbox is a remarkably flexible layout mode. When we understand how it
-                            works, we can build responsive designs that rearrange themselves as
-                            needed.
+                        </article>
+                      </Link>
+                      <Link :href="route('posts.detail')">
+                        <article class="cg3vi crdpf c8z7y c3bdg">
+                          <div class="c9noy cfwvb">
+                            <img
+                              class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
+                              src="https://preview.cruip.com/devspace/images/post-thumb-05.jpg"
+                              width="88"
+                              height="88"
+                              alt="Post 04"
+                            />
+                            <div>
+                              <div class="c2bb0 cd99g ck5r6 c0kco">
+                                <span class="chugl">—</span>
+                                Dec 24, 2023
+                              </div>
+                              <h3 class="cpynq c670g c5rvt c0kco">
+                                <a
+                                  class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
+                                  href="#"
+                                >
+                                  Writing My First Security Blogpost
+                                </a>
+                              </h3>
+                              <div class="cfwvb">
+                                <div class="cxslc c2bb0 cme8e c4a0m">
+                                  Flexbox is a remarkably flexible layout mode. When we understand
+                                  how it works, we can build responsive designs that rearrange
+                                  themselves as needed.
+                                </div>
+                                <a
+                                  class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
+                                  href="#"
+                                  tabindex="-1"
+                                >
+                                  <svg
+                                    class="cqlhq cjnrq cofma chtu4"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="12"
+                                  >
+                                    <path
+                                      d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
+                                    ></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
                           </div>
-                          <a
-                            class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
-                            href="#"
-                            tabindex="-1"
-                          >
-                            <svg
-                              class="cqlhq cjnrq cofma chtu4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="14"
-                              height="12"
-                            >
-                              <path
-                                d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
-                              ></path>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
+                        </article>
+                      </Link>
                     </div>
-                  </article>
-                </Link>
-                <Link :href="route('posts.detail')">
-                  <article class="cg3vi crdpf c8z7y c3bdg">
-                    <div class="c9noy cfwvb">
-                      <img
-                        class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
-                        src=""
-                        width="88"
-                        height="88"
-                        alt="Post 05"
-                      />
-                      <div>
-                        <div class="c2bb0 cd99g ck5r6 c0kco">
-                          <span class="chugl">—</span>
-                          Dec 24, 2023
-                        </div>
-                        <h3 class="cpynq c670g c5rvt c0kco">
-                          <a
-                            class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
-                            href="#"
-                          >
-                            10 YouTube Channels That Will Make You Smarter
-                          </a>
-                        </h3>
-                        <div class="cfwvb">
-                          <div class="cxslc c2bb0 cme8e c4a0m">
-                            Flexbox is a remarkably flexible layout mode. When we understand how it
-                            works, we can build responsive designs that rearrange themselves as
-                            needed.
+                    <div v-if="activeTab === 'tutorials'">
+                      <!-- Tutorials content here -->
+                      <Link :href="route('posts.detail')">
+                        <article class="cg3vi crdpf c8z7y c3bdg">
+                          <div class="c9noy cfwvb">
+                            <img
+                              class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
+                              src=""
+                              width="88"
+                              height="88"
+                              alt="Post 05"
+                            />
+                            <div>
+                              <div class="c2bb0 cd99g ck5r6 c0kco">
+                                <span class="chugl">—</span>
+                                Dec 24, 2023
+                              </div>
+                              <h3 class="cpynq c670g c5rvt c0kco">
+                                <a
+                                  class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
+                                  href="#"
+                                >
+                                  10 YouTube Channels That Will Make You Smarter
+                                </a>
+                              </h3>
+                              <div class="cfwvb">
+                                <div class="cxslc c2bb0 cme8e c4a0m">
+                                  Flexbox is a remarkably flexible layout mode. When we understand
+                                  how it works, we can build responsive designs that rearrange
+                                  themselves as needed.
+                                </div>
+                                <a
+                                  class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
+                                  href="#"
+                                  tabindex="-1"
+                                >
+                                  <svg
+                                    class="cqlhq cjnrq cofma chtu4"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="12"
+                                  >
+                                    <path
+                                      d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
+                                    ></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
                           </div>
-                          <a
-                            class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
-                            href="#"
-                            tabindex="-1"
-                          >
-                            <svg
-                              class="cqlhq cjnrq cofma chtu4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="14"
-                              height="12"
-                            >
-                              <path
-                                d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
-                              ></path>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </Link>
-                <Link :href="route('posts.detail')">
-                  <article class="cg3vi crdpf c8z7y c3bdg">
-                    <div class="c9noy cfwvb">
-                      <img
-                        class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
-                        src=""
-                        width="88"
-                        height="88"
-                        alt="Post 06"
-                      />
-                      <div>
-                        <div class="c2bb0 cd99g ck5r6 c0kco">
-                          <span class="chugl">—</span>
-                          Dec 24, 2023
-                        </div>
-                        <h3 class="cpynq c670g c5rvt c0kco">
-                          <a
-                            class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
-                            href="#"
-                          >
-                            How to Control CSS Animations with JavaScript
-                          </a>
-                        </h3>
-                        <div class="cfwvb">
-                          <div class="cxslc c2bb0 cme8e c4a0m">
-                            Flexbox is a remarkably flexible layout mode. When we understand how it
-                            works, we can build responsive designs that rearrange themselves as
-                            needed.
+                        </article>
+                      </Link>
+                      <Link :href="route('posts.detail')">
+                        <article class="cg3vi crdpf c8z7y c3bdg">
+                          <div class="c9noy cfwvb">
+                            <img
+                              class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
+                              src=""
+                              width="88"
+                              height="88"
+                              alt="Post 06"
+                            />
+                            <div>
+                              <div class="c2bb0 cd99g ck5r6 c0kco">
+                                <span class="chugl">—</span>
+                                Dec 24, 2023
+                              </div>
+                              <h3 class="cpynq c670g c5rvt c0kco">
+                                <a
+                                  class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
+                                  href="#"
+                                >
+                                  How to Control CSS Animations with JavaScript
+                                </a>
+                              </h3>
+                              <div class="cfwvb">
+                                <div class="cxslc c2bb0 cme8e c4a0m">
+                                  Flexbox is a remarkably flexible layout mode. When we understand
+                                  how it works, we can build responsive designs that rearrange
+                                  themselves as needed.
+                                </div>
+                                <a
+                                  class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
+                                  href="#"
+                                  tabindex="-1"
+                                >
+                                  <svg
+                                    class="cqlhq cjnrq cofma chtu4"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="12"
+                                  >
+                                    <path
+                                      d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
+                                    ></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
                           </div>
-                          <a
-                            class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
-                            href="#"
-                            tabindex="-1"
-                          >
-                            <svg
-                              class="cqlhq cjnrq cofma chtu4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="14"
-                              height="12"
-                            >
-                              <path
-                                d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
-                              ></path>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
+                        </article>
+                      </Link>
                     </div>
-                  </article>
-                </Link>
-                <Link :href="route('posts.detail')">
-                  <article class="cg3vi crdpf c8z7y c3bdg">
-                    <div class="c9noy cfwvb">
-                      <img
-                        class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
-                        src=""
-                        width="88"
-                        height="88"
-                        alt="Post 07"
-                      />
-                      <div>
-                        <div class="c2bb0 cd99g ck5r6 c0kco">
-                          <span class="chugl">—</span>
-                          Dec 24, 2023
-                        </div>
-                        <h3 class="cpynq c670g c5rvt c0kco">
-                          <a
-                            class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
-                            href="#"
-                          >
-                            Lies You've Been Told About Podcasting
-                          </a>
-                        </h3>
-                        <div class="cfwvb">
-                          <div class="cxslc c2bb0 cme8e c4a0m">
-                            Flexbox is a remarkably flexible layout mode. When we understand how it
-                            works, we can build responsive designs that rearrange themselves as
-                            needed.
-                          </div>
-                          <a
-                            class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
-                            href="#"
-                            tabindex="-1"
-                          >
-                            <svg
-                              class="cqlhq cjnrq cofma chtu4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="14"
-                              height="12"
-                            >
-                              <path
-                                d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
-                              ></path>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </Link>
-                <Link :href="route('posts.detail')">
-                  <article class="cg3vi crdpf c8z7y c3bdg">
-                    <div class="c9noy cfwvb">
-                      <img
-                        class="c906c cr6xl c8c2x c9xwx ccj8i co6sp c5zj3"
-                        src=""
-                        width="88"
-                        height="88"
-                        alt="Post 08"
-                      />
-                      <div>
-                        <div class="c2bb0 cd99g ck5r6 c0kco">
-                          <span class="chugl">—</span>
-                          Dec 24, 2023
-                        </div>
-                        <h3 class="cpynq c670g c5rvt c0kco">
-                          <a
-                            class="cfsb7 c2ers cofz6 cubqj cq25t cegle chlgd cdaqi c3ntq csd7h cdie3 c4ezg c8xm0 c6esp cofma cz5kb c5c77 cn2yf"
-                            href="#"
-                          >
-                            How to Extend Prototypes with JavaScript
-                          </a>
-                        </h3>
-                        <div class="cfwvb">
-                          <div class="cxslc c2bb0 cme8e c4a0m">
-                            Flexbox is a remarkably flexible layout mode. When we understand how it
-                            works, we can build responsive designs that rearrange themselves as
-                            needed.
-                          </div>
-                          <a
-                            class="cfup8 c5a0p chugl csb3e c86uy cw2lf cpnf3 cgej2"
-                            href="#"
-                            tabindex="-1"
-                          >
-                            <svg
-                              class="cqlhq cjnrq cofma chtu4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="14"
-                              height="12"
-                            >
-                              <path
-                                d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"
-                              ></path>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </Link>
+                    <div v-if="activeTab === 'indieHacking'"></div>
+                  </div>
+                </transition>
               </div>
             </section>
 
@@ -597,3 +518,14 @@ defineOptions({ layout: AppLayout });
     </div>
   </div>
 </template>
+<style lang="scss">
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

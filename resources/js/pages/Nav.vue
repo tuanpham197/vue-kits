@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+
+const page = usePage();
+const currentUrl = computed<string>(() => page.url.trim());
+
+const activeMenu = (url: string) => {
+  return currentUrl.value === url ? 'chugl cgla5' : 'crnoq';
+};
 </script>
 <template>
   <div class="cg3vi cax03 c5e9s cadmo cqmvi csb3e cxxfw c9cru c70js cfydh c5zj3">
@@ -11,7 +20,10 @@ import { Link } from '@inertiajs/vue3';
             <li class="cgktm">
               <Link
                 :href="route('home')"
-                class="cgla5 cjg8k cj6ii cfup8 cdxil csov4 c5a0p chugl c53su c5c77 c8pgj cfwvb cq87d"
+                :class="[
+                  'cjg8k cj6ii cfup8 cdxil csov4 c5a0p c53su c5c77 c8pgj cfwvb cq87d',
+                  activeMenu('/'),
+                ]"
               >
                 <span class="c4g5b">Home</span>
                 <svg class="cjnrq" xmlns="http://www.w3.org/2000/svg" width="21" height="19">
@@ -25,7 +37,10 @@ import { Link } from '@inertiajs/vue3';
             <li class="cgktm">
               <Link
                 :href="route('about')"
-                class="c4ugg csbvt cpvt7 cfup8 crnoq c5a0p c8pgj cfwvb cq87d"
+                :class="[
+                  'cjg8k cj6ii cfup8 cdxil csov4 c5a0p c53su c5c77 c8pgj cfwvb cq87d',
+                  activeMenu('/about'),
+                ]"
               >
                 <span class="c4g5b">About</span>
                 <svg class="cjnrq" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -42,7 +57,10 @@ import { Link } from '@inertiajs/vue3';
             <li class="cgktm">
               <Link
                 :href="route('projects')"
-                class="c4ugg csbvt cpvt7 cfup8 crnoq c5a0p c8pgj cfwvb cq87d"
+                :class="[
+                  'cjg8k cj6ii cfup8 cdxil csov4 c5a0p c53su c5c77 c8pgj cfwvb cq87d',
+                  activeMenu('/projects'),
+                ]"
               >
                 <span class="c4g5b">Projects</span>
                 <svg class="cjnrq" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -56,7 +74,10 @@ import { Link } from '@inertiajs/vue3';
             <li class="cgktm">
               <Link
                 :href="route('resume')"
-                class="c4ugg csbvt cpvt7 cfup8 crnoq c5a0p c8pgj cfwvb cq87d"
+                :class="[
+                  'cjg8k cj6ii cfup8 cdxil csov4 c5a0p c53su c5c77 c8pgj cfwvb cq87d',
+                  activeMenu('/resume'),
+                ]"
               >
                 <span class="c4g5b">Resume</span>
                 <svg class="cjnrq" xmlns="http://www.w3.org/2000/svg" width="18" height="20">
@@ -71,7 +92,10 @@ import { Link } from '@inertiajs/vue3';
             <li class="cgktm">
               <Link
                 :href="route('subscribe')"
-                class="c4ugg csbvt cpvt7 cfup8 crnoq c5a0p c8pgj cfwvb cq87d"
+                :class="[
+                  'cjg8k cj6ii cfup8 cdxil csov4 c5a0p c53su c5c77 c8pgj cfwvb cq87d',
+                  activeMenu('/subscribe'),
+                ]"
               >
                 <span class="c4g5b">Subscribe</span>
                 <svg class="cjnrq" xmlns="http://www.w3.org/2000/svg" width="21" height="21">
