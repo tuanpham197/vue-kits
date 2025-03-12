@@ -50,6 +50,7 @@ window.dataLayer.push({
     'user_id': '123456', // ID của user mới đăng ký
     'utm_source': getCookie('utm_source') // Nếu bạn lưu UTM vào cookie
 });
+            console.log("done");
         </script>
     </body>
 </html>
