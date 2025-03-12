@@ -48,7 +48,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 window.dataLayer.push({
     'event': 'user_signup',
     'user_id': '123456', // ID của user mới đăng ký
-    'utm_source': getCookie('utm_source') // Nếu bạn lưu UTM vào cookie
+    'utm_source': 123 // Nếu bạn lưu UTM vào cookie
 });
             console.log("done");
         </script>
