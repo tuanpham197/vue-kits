@@ -42,5 +42,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
         @inertia
+        <script>
+
+            window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    'event': 'user_signup',
+    'user_id': '123456', // ID của user mới đăng ký
+    'utm_source': getCookie('utm_source') // Nếu bạn lưu UTM vào cookie
+});
+        </script>
     </body>
 </html>
